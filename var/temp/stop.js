@@ -1,0 +1,1 @@
+let stop = {lastStop: 'sell', valueStop: 31}; module.exports = stop;

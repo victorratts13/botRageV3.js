@@ -1,0 +1,36 @@
+{
+  "name": "botrage",
+  "version": "3.0.1",
+  "description": "Bot para trade em BitMex",
+  "main": "start.js",
+  "scripts": {
+    "start": "concurrently \"node ./bin/apiRequest.js\" \"node bot.js\"",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "btc",
+    "ltc",
+    "eth",
+    "bitmex",
+    "crypto",
+    "altcoin",
+    "mexicoin",
+    "BRL",
+    "USDT",
+    "LTC",
+    "DOGE",
+    "exchange",
+    "BOT",
+    "Stelar"
+  ],
+  "author": "Victor Ratts",
+  "license": "MIT",
+  "dependencies": {
+    "clear-module": "^4.0.0",
+    "concurrently": "^5.0.0",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "technicalindicators": "^2.0.9"
+  }
+}
