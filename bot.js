@@ -386,59 +386,63 @@ setInterval(() => {
                 }
 
                 function buyFunction(){
-                    if(lastOrderSend.side == 'Sell'){
-                        console.log(' \x1b[32m executando compra:');
-                        request(requestOptionsBuy, (err, res, body) => {
-                            if(err){
-                                console.log('erro na compra. Verifique BuyFunction: '+err);
-                            }else{
-                                let tempFile = `var fileBuy = ${body}; module.exports = fileBuy;`;
-                                let lastOrder = `var lastOrderSend = ${body}; module.exports = lastOrderSend;`;
-                                fs.writeFile('./var/temp/lastOrder.js', lastOrder, (err) => {
-                                    if(err){
-                                        console.log('erro ao criar arequivo: lastOrder.js ->'+err)
-                                    }else{
-                                        console.log('create temporary lastOrder File on ./var/lastOrder.js \n');
-                                    }
-                                });
-                                fs.writeFile('./var/temp/tempFileBuy.js', tempFile, () => {
-                                    if(err){
-                                        console.log('erro ao criar arequivo: tempFileBuy.js ->'+err)
-                                    }else{
-                                        console.log('create file temp Buy');
-                                    }
-                                });
-                            }
-                        })
-                    }
+                    setTimeout(() => {
+                        if(lastOrderSend.side == 'Sell'){
+                            console.log(' \x1b[32m executando compra:');
+                            request(requestOptionsBuy, (err, res, body) => {
+                                if(err){
+                                    console.log('erro na compra. Verifique BuyFunction: '+err);
+                                }else{
+                                    let tempFile = `var fileBuy = ${body}; module.exports = fileBuy;`;
+                                    let lastOrder = `var lastOrderSend = ${body}; module.exports = lastOrderSend;`;
+                                    fs.writeFile('./var/temp/lastOrder.js', lastOrder, (err) => {
+                                        if(err){
+                                            console.log('erro ao criar arequivo: lastOrder.js ->'+err)
+                                        }else{
+                                            console.log('create temporary lastOrder File on ./var/lastOrder.js \n');
+                                        }
+                                    });
+                                    fs.writeFile('./var/temp/tempFileBuy.js', tempFile, () => {
+                                        if(err){
+                                            console.log('erro ao criar arequivo: tempFileBuy.js ->'+err)
+                                        }else{
+                                            console.log('create file temp Buy');
+                                        }
+                                    });
+                                }
+                            })
+                        }
+                    }, 3000)
                 }
 
                 function sellFunction(){
-                    if(lastOrderSend.side == 'Buy'){
-                        console.log(' \x1b[32m executando Venda:');
-                        request(requestOptionsSell, (err, res, body) => {
-                            if(err){
-                                console.log('erro na Venda. Verifique SellFunction: '+err);
-                            }else{
-                                let tempFile = `var fileSell = ${body}; module.exports = fileSell;`;
-                                let lastOrder = `var lastOrderSend = ${body}; module.exports = lastOrderSend;`;
-                                fs.writeFile('./var/temp/lastOrder.js', lastOrder, (err) => {
-                                    if(err){
-                                        console.log('erro ao criar arequivo: lastOrder.js ->'+err)
-                                    }else{
-                                        console.log('create temporary lastOrder File on ./var/lastOrder.js \n');
-                                    }
-                                });
-                                fs.writeFile('./var/temp/tempFileSell.js', tempFile, () => {
-                                    if(err){
-                                        console.log('erro ao criar arequivo: tempFileSell.js ->'+err)
-                                    }else{
-                                        console.log('create file temp Sell');
-                                    }
-                                });
-                            }
-                        })
-                    }
+                    setTimeout(() => {
+                        if(lastOrderSend.side == 'Buy'){
+                            console.log(' \x1b[32m executando Venda:');
+                            request(requestOptionsSell, (err, res, body) => {
+                                if(err){
+                                    console.log('erro na Venda. Verifique SellFunction: '+err);
+                                }else{
+                                    let tempFile = `var fileSell = ${body}; module.exports = fileSell;`;
+                                    let lastOrder = `var lastOrderSend = ${body}; module.exports = lastOrderSend;`;
+                                    fs.writeFile('./var/temp/lastOrder.js', lastOrder, (err) => {
+                                        if(err){
+                                            console.log('erro ao criar arequivo: lastOrder.js ->'+err)
+                                        }else{
+                                            console.log('create temporary lastOrder File on ./var/lastOrder.js \n');
+                                        }
+                                    });
+                                    fs.writeFile('./var/temp/tempFileSell.js', tempFile, () => {
+                                        if(err){
+                                            console.log('erro ao criar arequivo: tempFileSell.js ->'+err)
+                                        }else{
+                                            console.log('create file temp Sell');
+                                        }
+                                    });
+                                }
+                            })
+                        }
+                    }, 3000)
                 }
 
                 function stopSellFunction(){
@@ -498,14 +502,14 @@ setInterval(() => {
                 console.log('valor do cross -> '+cross())
 
                 if(cross() == 1){
-                    if(lastOrderSend == 'Sell'){
+                    if(lastOrderSend.side == 'Sell'){
                         console.log(' \x1b[32m Fechando Posição Aberta \n');
                         request(requestOptionsClose, function(error, response, body) {
                             if (error) { console.log(error); }
                             console.log(body);
                         });
                     }
-                    if(lastOrderSend == 'Buy'){
+                    if(lastOrderSend.side == 'Buy'){
                         if(lastOrderSend.ordType == config.orderType){
                             console.log('Compra executada... Aguardando Venda');
                         }
@@ -537,14 +541,14 @@ setInterval(() => {
                 }
 
                 if(cross() == 2){
-                    if(lastOrderSend == 'Buy'){
+                    if(lastOrderSend.side == 'Buy'){
                         console.log(' \x1b[32m Fechando Posição Aberta \n');
                         request(requestOptionsClose, function(error, response, body) {
                             if (error) { console.log(error); }
                             console.log(body);
                         });
                     }
-                    if(lastOrderSend == 'Sell'){
+                    if(lastOrderSend.side == 'Sell'){
                         if(lastOrderSend.ordType == config.orderType){
                             console.log('Compra executada... Aguardando Venda');
                         }
