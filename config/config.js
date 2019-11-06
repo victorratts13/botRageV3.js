@@ -1,6 +1,6 @@
 var generalConfiguration = {
-    apiKey: 'D2WE24DdwxDHfLBt7jzNRqbX',
-    apiSecret: 'FC5uCf8hfkMaSBM9HhAFxbPYGCAkJshWP3HQR14agP2iMyse',
+    apiKey: 'Your_api_Bitmex',
+    apiSecret: 'Your_Secret_Bitmex',
     UDFPort: 5001,
     requestTimeout: 60000,
     requestTimeBot: 5000,
